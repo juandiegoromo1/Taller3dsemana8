@@ -1,7 +1,10 @@
 using UnityEngine;
 
 public class PlayerMovement : Movement
-{    
+{
+    [SerializeField] GameObject bala;
+    [SerializeField] GameObject puntodisparo;
+    [SerializeField] float velocidadbala;
     protected override void Move()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
@@ -16,5 +19,14 @@ public class PlayerMovement : Movement
         {
             transform.forward = direction;
         }
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Disparo();
+        }
+    }
+    void Disparo()
+    {
+        GameObject balatemporal = Instantiate(bala, puntodisparo.transform.position, puntodisparo.transform.rotation);
+        balatemporal.GetComponent<Rigidbody>().linearVelocity = puntodisparo.transform.forward * velocidadbala;
     }
 }
