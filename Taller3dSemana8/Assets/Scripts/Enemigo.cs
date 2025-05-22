@@ -17,6 +17,8 @@ public class Enemigo : MonoBehaviour
     {
         if (other.gameObject.CompareTag("bala"))
         {
+            Destroy(other.gameObject);
+            GameObject.Find("Generador Niveles").GetComponent<GeneradorNiveles>().EnemigoDerrotado();
             Destroy(gameObject);
         }
     }
